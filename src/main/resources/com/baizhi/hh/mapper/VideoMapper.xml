@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.hh.dao.VideoDao">
+    <sql id="VideoAll">
+        id,title,brief,cover_path coverPath,
+        video_path videoPath,upload_time uploadTime,
+        category_id categoryId,user_id userId,group_id groupId,status
+    </sql>
+    <select id="queryCounts" resultType="long">
+        select count(id) from yx_video
+    </select>
+    <select id="findAll" resultType="com.baizhi.hh.entity.Video">
+        select
+        <include refid="VideoAll"/>
+        from yx_video
+        <if test="rows!=0">LIMIT #{start},#{rows}</if>
+    </select>
+    <select id="findId" parameterType="String" resultType="com.baizhi.hh.entity.Video">
+        select
+        <include refid="VideoAll"/>
+        from yx_video where id = #{id}
+    </select>
+    <insert id="addVideo" parameterType="com.baizhi.hh.entity.Video">
+        insert into yx_video values (#{id},#{title},#{brief},#{coverPath},#{videoPath},#{uploadTime},#{categoryId},#{userId},#{groupId},${status});
+    </insert>
+    <delete id="delVideo" parameterType="String">
+        delete from yx_video where id = #{id}
+    </delete>
+    <update id="upVideo" parameterType="com.baizhi.hh.entity.Video">
+        update yx_video
+        <set>
+            <if test="title!=null">title = #{title},</if>
+            <if test="brief!=null">brief = #{brief},</if>
+            <if test="coverPath!=null">cover_path = #{coverPath},</if>
+            <if test="videoPath!=null">video_path = #{videoPath},</if>
+            <if test="uploadTime!=null">upload_time = #{uploadTime},</if>
+            <if test="categoryId!=null">category_id = #{categoryId},</if>
+            <if test="userId!=null">user_id = #{userId},</if>
+            <if test="groupId!=null">group_id = #{groupId},</if>
+            <if test="status!=null">status = #{status},</if>
+        </set>
+        where id =#{id}
+    </update>
+    <select id="findLikeVideoName" parameterType="String" resultType="com.baizhi.hh.po.VideoLikePo">
+        select
+        v.id id,v.title videoTitle,v.cover_path cover,v.video_path path,
+        v.upload_time uploadTime,v.brief description,c.cate_name cateName,
+        u.id userId,c.parent_id categoryId,u.nick_name userName
+        from yx_user u RIGHT JOIN yx_video v ON u.id = v.user_id
+        LEFT JOIN yx_category c on c.id = v.category_id
+        where v.title like '%${content}%'
+        ORDER BY v.upload_time DESC
+    </select>
+
+</mapper>

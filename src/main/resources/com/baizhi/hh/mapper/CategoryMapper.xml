@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.hh.dao.CategoryDao">
+
+    <sql id="queryAll">
+        c.id cid,c.cate_name cName,c.levels cLev,c.parent_id cPar,
+        g.id gid,g.cate_name gName,g.levels gLev,g.parent_id gPar
+    </sql>
+    <sql id="queryId">
+        id,cate_name cateName,levels,parent_id parentId
+    </sql>
+
+    <resultMap id="map" type="com.baizhi.hh.entity.Category">
+        <id column="cid" property="id"/>
+        <result column="cName" property="cateName"/>
+        <result column="cLev" property="levels"/>
+        <result column="cPar" property="parentId"/>
+        <collection property="cate" ofType="com.baizhi.hh.entity.Category">
+            <id column="gid" property="id"/>
+            <result column="gName" property="cateName"/>
+            <result column="gLev" property="levels"/>
+            <result column="gPar" property="parentId"/>
+        </collection>
+    </resultMap>
+    <select id="queryCounts" resultType="long">
+        select count(id) from yx_category
+        <where>
+            <if test="levels != null">and levels = #{levels}</if>
+            <if test="parentId != null">and parent_id = #{parentId}</if>
+        </where>
+    </select>
+    <select id="findAll" resultType="com.baizhi.hh.entity.Category">
+        select
+        <include refid="queryId"/>
+        from yx_category
+    </select>
+    <select id="findOneAll" resultMap="map">
+        select
+        <include refid="queryAll"/>
+        from yx_category c left join yx_category g on c.id = g.parent_id
+        where c.levels = 1
+        <if test="rows!=0">LIMIT #{start},#{rows}</if>
+    </select>
+    <select id="findTwoAll" resultType="com.baizhi.hh.entity.Category">
+        select
+        <include refid="queryId"/>
+        from yx_category where parent_id = #{parentId}
+        <if test="rows!=0">LIMIT #{start},#{rows}</if>
+    </select>
+    <insert id="addCate" parameterType="com.baizhi.hh.entity.Category">
+        insert into yx_category(id,cate_name,levels,parent_id) values (#{id},#{cateName},#{levels},#{parentId,jdbcType=VARCHAR});
+    </insert>
+    <delete id="delCate" parameterType="String">
+        delete from yx_category where id = #{id}
+    </delete>
+    <select id="findId" parameterType="String" resultType="com.baizhi.hh.entity.Category">
+        select
+        <include refid="queryId"/>
+        from yx_category where parent_id = #{id}
+    </select>
+    <update id="updateCate" parameterType="com.baizhi.hh.entity.Category">
+        update yx_category
+        <set>
+            <if test="cateName!=null">cate_name = #{cateName},</if>
+            <if test="parentId!=null">parent_id = #{parentId},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>

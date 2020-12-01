@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.hh.dao.LogDao">
+
+    <sql id="all">
+        id,name,time,options,status
+    </sql>
+    <select id="findAll" resultType="com.baizhi.hh.entity.Log">
+        select
+        <include refid="all"/>
+        from yx_log
+    </select>
+    <insert id="addLog" parameterType="com.baizhi.hh.entity.Log">
+        insert into yx_log values (#{id},#{name},#{time},#{options},#{status})
+    </insert>
+
+</mapper>
