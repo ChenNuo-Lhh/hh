@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.hh.dao.UserDao">
+
+    <sql id="all">
+        id,nick_name nickName,phone,pic_img picImg,brief,score,create_date createDate,status
+    </sql>
+
+    <select id="queryCounts" resultType="long">
+        select count(id) from yx_user
+    </select>
+    <select id="findAll" resultType="com.baizhi.hh.entity.User">
+        select
+        <include refid="all"/>
+        from yx_user limit #{page},#{rows}
+    </select>
+    <insert id="addUser" parameterType="com.baizhi.hh.entity.User">
+        insert into yx_user values (#{id},#{nickName},#{phone},#{picImg},#{brief},#{score},#{createDate},#{status})
+    </insert>
+    <update id="upStatus" parameterType="com.baizhi.hh.entity.User">
+        update yx_user
+        <set>
+            <if test="nickName != null">nick_name=#{nickName},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="picImg != null">pic_img=#{picImg},</if>
+            <if test="brief != null">brief=#{brief},</if>
+            <if test="score != null">score=#{score},</if>
+            <if test="createDate != null">create_date=#{createDate},</if>
+            <if test="status != null">status=#{status},</if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="findId" parameterType="String" resultType="com.baizhi.hh.entity.User">
+        select
+        <include refid="all"/>
+        from yx_user where id = #{id}
+    </select>
+
+
+</mapper>

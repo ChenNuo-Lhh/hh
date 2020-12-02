@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.hh.dao.UserPoDao">
+
+    <!--CONCAT(MONTH(u.create_date),'月')  拼接字符串
+        CONCAT( 11 ,'月')  得出  11月
+    -->
+    <sql id="findAll">
+      u.id id,CONCAT(MONTH(u.create_date),'月') createDate,c.sex sex,c.city city
+    </sql>
+    <!--通过性别及月份进行查询,将当前月存入集合
+        MONTH(u.create_date)  获取当前时间的月字段
+        例如 month(2020-11-20)  得出  11
+    -->
+    <select id="findAll" resultType="com.baizhi.hh.po.UserPo">
+        SELECT
+        <include refid="findAll"/>
+        FROM yx_user u LEFT JOIN yx_user_con c
+        ON u.id = c.user_id
+        where c.sex like #{sex}
+        and MONTH(u.create_date) like ${num}
+    </select>
+    <!--通过分组查询,将地区字段进行分组-->
+    <select id="findCity" resultType="com.baizhi.hh.po.NvPo">
+        SELECT count(*) value,c.city name
+        FROM yx_user u LEFT JOIN yx_user_con c
+        ON u.id = c.user_id where sex=#{sex}
+        GROUP BY c.city
+    </select>
+
+</mapper>
