@@ -9,7 +9,8 @@
     </sql>
 
     <select id="findAll" parameterType="String" resultType="com.baizhi.hh.po.VideoPo">
-        select <include refid="all" />
+        select
+        <include refid="all"/>
         from yx_category c RIGHT JOIN yx_video v ON c.id = v.category_id
         LEFT JOIN yx_user u ON v.user_id = u.id
         ORDER BY v.upload_time DESC

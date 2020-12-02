@@ -2,7 +2,9 @@ package com.baizhi.hh.Interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
+//@Component
 public class MyInterceptor implements HandlerInterceptor {
+
    /* @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("进入拦截器");

@@ -12,7 +12,8 @@
     <select id="findAll" resultType="com.baizhi.hh.entity.Video">
         select
         <include refid="VideoAll"/>
-        from yx_video <if test="rows!=0">LIMIT #{start},#{rows}</if>
+        from yx_video
+        <if test="rows!=0">LIMIT #{start},#{rows}</if>
     </select>
     <select id="findId" parameterType="String" resultType="com.baizhi.hh.entity.Video">
         select

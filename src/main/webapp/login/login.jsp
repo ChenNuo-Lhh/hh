@@ -9,11 +9,11 @@
     <title>yingx Login</title>
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/form-elements.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="stylesheet" href="${path}/login/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${path}/login/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${path}/login/assets/css/form-elements.css">
+    <link rel="stylesheet" href="${path}/login/assets/css/style.css">
+    <link rel="shortcut icon" href="${path}/login/assets/ico/favicon.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
           href="${path}/login/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114"

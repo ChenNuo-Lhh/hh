@@ -6,7 +6,9 @@
         id,title,content,user_id userid
     </sql>
     <select id="findAll" resultType="com.baizhi.hh.entity.Feedback">
-        select <include refid="all" /> from yx_feedback
+        select
+        <include refid="all"/>
+        from yx_feedback
     </select>
 
 </mapper>

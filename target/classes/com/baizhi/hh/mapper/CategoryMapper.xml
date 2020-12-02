@@ -38,7 +38,8 @@
         select
         <include refid="queryAll"/>
         from yx_category c left join yx_category g on c.id = g.parent_id
-        where c.levels = 1 <if test="rows!=0">LIMIT #{start},#{rows}</if>
+        where c.levels = 1
+        <if test="rows!=0">LIMIT #{start},#{rows}</if>
     </select>
     <select id="findTwoAll" resultType="com.baizhi.hh.entity.Category">
         select

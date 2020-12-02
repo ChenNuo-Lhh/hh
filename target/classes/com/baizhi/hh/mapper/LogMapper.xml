@@ -6,7 +6,9 @@
         id,name,time,options,status
     </sql>
     <select id="findAll" resultType="com.baizhi.hh.entity.Log">
-        select <include refid="all" /> from yx_log
+        select
+        <include refid="all"/>
+        from yx_log
     </select>
     <insert id="addLog" parameterType="com.baizhi.hh.entity.Log">
         insert into yx_log values (#{id},#{name},#{time},#{options},#{status})
