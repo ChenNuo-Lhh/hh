@@ -164,7 +164,7 @@ public class UserController {
      * 后台
      * 用户分布
      * 思路:值类型为__{性别:[地区:人数]}__{对象1,对象2-集合[对象1{地区:人数},对象2,...]}
-     * 将值分别拆分封装,com.baizhi.hh.po.ScPo 及 com.baizhi.hh.po.NvPo
+     * 将值分别拆分封装,com.com.hh.po.ScPo 及 com.com.hh.po.NvPo
      */
     @ResponseBody
     @RequestMapping("distribution")
