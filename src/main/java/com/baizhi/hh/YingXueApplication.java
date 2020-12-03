@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan("com.com.hh.dao")
+@MapperScan("com.baizhi.hh.dao")
 public class YingXueApplication {
     public static void main(String[] args) {
         SpringApplication.run(YingXueApplication.class, args);
