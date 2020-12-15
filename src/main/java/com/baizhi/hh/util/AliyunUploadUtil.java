@@ -22,8 +22,8 @@ public class AliyunUploadUtil {
         // Endpoint以北京为例，其它Region请按实际情况填写。
         String endpoint = "https://oss-cn-beijing.aliyuncs.com";
         // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录RAM控制台创建RAM账号。
-        String accessKeyId = "LTAI4GGtfKpuGnKQA2LjPwAq";
-        String accessKeySecret = "uib41XB7MB8M4BwNHq6OI1UvDgctpm";
+        String accessKeyId = "LTAI4GCGfKpuAGnKA2VLjPwq";
+        String accessKeySecret = "uib4XBK7MB84BwNHUq6OI1UODgctpm";
 //        String bucketName = "yingxue-cn";
 
         // 创建OSSClient实例。
