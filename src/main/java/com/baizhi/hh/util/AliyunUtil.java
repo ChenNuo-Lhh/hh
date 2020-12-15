@@ -24,8 +24,8 @@ public class AliyunUtil {
         final String domain = "dysmsapi.aliyuncs.com";//短信API产品域名（接口地址固定，无需修改）
 
         //替换成你的AK
-        final String accessKeyId = "LTAI4GGtfKpuGnKQA2LjPwAq";//你的accessKeyId,参考本文档步骤2
-        final String accessKeySecret = "uib41XB7MB8M4BwNHq6OI1UvDgctpm";//你的accessKeySecret，参考本文档步骤2
+        final String accessKeyId = "LTAI4GCGfKpuAGnKA2VLjPwq";//你的accessKeyId,参考本文档步骤2
+        final String accessKeySecret = "uib4XBK7MB84BwNHUq6OI1UODgctpm";//你的accessKeySecret，参考本文档步骤2
 
 
         //初始化ascClient,暂时不支持多region（请勿修改）
